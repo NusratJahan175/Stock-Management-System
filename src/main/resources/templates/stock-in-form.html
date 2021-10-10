@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Stock Management System</title>
+
+</head>
+<body>
+<div class="container">
+    <h3>Stock In</h3>
+    <hr>
+
+    <form action="#" th:action="@{/saveNewItem}" th:object="${newStock}" method="post">
+
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>Company Name: <select class="form-select form-select-lg w-25 mb-2" th:field="*{companyName}">
+            <option th:each="tempCompany : ${companyList}" th:value="${tempCompany.id}" th:text="${tempCompany.name}"></option>
+        </select></p>
+        <p>Item Name: <select class="form-select form-select-lg w-25 mb-2" th:field="*{itemName}">
+            <option th:each="tempItem : ${itemList}" th:value="${tempItem.id}" th:text="${tempItem.itemName}"></option>
+        </select></p>
+
+        <p>Reorder Level: <input type="text" th:field="*{reorderLevel}" class="form-control mb-4 col-4"/></p>
+
+        <p>Available Quantity: <input type="text" th:field="*{availableQuantity}" class="form-control mb-4 col-4"/></p>
+
+        <p>Stock in Quantity: <input type="text" th:field="*{stockInQuantity}" class="form-control mb-4 col-4"/></p>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+</div>
+</body>
+</html>

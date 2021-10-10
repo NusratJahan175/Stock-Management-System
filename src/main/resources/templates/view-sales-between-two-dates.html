@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Stock Management System</title>
+
+</head>
+<body>
+<div class="container">
+    <h3>Stock In</h3>
+    <hr>
+
+    <form action="#" th:action="@{/saveNewItem}" th:object="${newStock}" method="post">
+
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>From Date: <select class="form-select form-select-lg w-25 mb-2" th:field="*{companyName}">
+            <option th:each="tempCompany : ${companyList}" th:value="${tempCompany.id}" th:text="${tempCompany.name}"></option>
+        </select></p>
+        <p>To Date: <select class="form-select form-select-lg w-25 mb-2" th:field="*{itemName}">
+            <option th:each="tempItem : ${itemList}" th:value="${tempItem.id}" th:text="${tempItem.itemName}"></option>
+        </select></p>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>SL</th>
+            <th>Item</th>
+            <th>Sale Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempCompany : ${companyList}">
+            <td th:text="${tempCompany.id}"/>
+            <td th:text="${tempCompany.name}"/>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

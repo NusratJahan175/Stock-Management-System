@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Stock Management System</title>
+
+</head>
+<body>
+<div class="container">
+    <h3>Company Setup</h3>
+    <hr>
+
+    <form action="#" th:action="@{/save}" th:object="${company}" method="post">
+
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>Name: <input type="text" th:field="*{name}" class="form-control mb-4 col-4"/></p>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>SL</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempCompany : ${companyList}">
+            <td th:text="${tempCompany.id}"/>
+            <td th:text="${tempCompany.name}"/>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

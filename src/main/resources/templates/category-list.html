@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Stock Management System</title>
+
+</head>
+<body>
+<div class="container">
+    <h3>Category Setup</h3>
+    <hr>
+
+    <form action="#" th:action="@{/saveCategory}" th:object="${category}" method="post">
+
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>Name: <input type="text" th:field="*{name}" class="form-control mb-4 col-4"/></p>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <div th:value="${message}" th:text="${message}">saved</div>
+
+
+    <br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>SL</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempCategory : ${categoryList}">
+            <td th:text="${tempCategory.id}"/>
+            <td th:text="${tempCategory.name}"/>
+            <td>
+                <a th:href="@{/showFormForUpdate(categoryId=${tempCategory.id})}" class="btn btn-info btn-sm">
+                    Update
+                </a>
+
+                <a th:href="@{/delete(categoryId=${tempCategory.id})}" class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this Employee?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
